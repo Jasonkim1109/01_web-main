@@ -33,8 +33,21 @@
       </div>
 
       <div class="field">
-        <label for="sex">성별</label>
-        <input type="text" id="sex" name="sex" autocomplete="off">
+        <span class="field-label">성별</span>
+        <div class="choice-list">
+          <label class="choice">
+            <input type="radio" name="sex" value="남성">
+            <span>남성</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="sex" value="여성">
+            <span>여성</span>
+          </label>
+          <label class="choice">
+            <input type="radio" name="sex" value="알리고 싶지 않음">
+            <span>알리고 싶지 않음</span>
+          </label>
+        </div>
       </div>
 
       <div class="field">
@@ -152,9 +165,9 @@
           <!-- id 는 문서 안에서 겹치면 안 됩니다. name 도 나눠야 값이 섞이지 않습니다. -->
           <select id="food_main" name="food_main" multiple size="5">
             <optgroup label="음식">
-              <option value="pizza" selected>피자</option>
+              <option value="pizza">피자</option>
               <option value="hamburger">햄버거</option>
-              <option value="pasta">파스타</option>
+              <option value="pasta" selected>파스타</option>
               <option value="steak">스테이크</option>
             </optgroup>
           </select>

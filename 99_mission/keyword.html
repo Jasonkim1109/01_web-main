@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>나를 설명하는 3가지 키워드</title>
+  <style>
+    :root {
+      --ink: #18323b;
+      --muted: #60777b;
+      --paper: #f5f1e8;
+      --card: #fffdf8;
+      --accent: #e66d4f;
+      --line: #d9cfc0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 16px;
+      z-index: 1;
+      padding: 8px 12px;
+      color: var(--card);
+      background: var(--ink);
+      font: 700 0.9rem/1 Arial, sans-serif;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(135deg, #f5f1e8 0%, #eef3ef 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(217, 207, 192, 0.8);
+      background: rgba(255, 253, 248, 0.72);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      width: min(100% - 32px, 960px);
+      margin: 0 auto;
+      padding: 24px 0;
+      font: 700 0.9rem/1 Arial, sans-serif;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    footer {
+      width: min(100% - 32px, 960px);
+      margin: 0 auto;
+      padding: 0 0 32px;
+      color: var(--muted);
+      font: 0.85rem/1.5 Arial, sans-serif;
+    }
+
+    main {
+      width: min(100% - 32px, 960px);
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font: 700 0.78rem/1.2 Arial, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 4rem;
+      line-height: 0.98;
+      font-weight: 700;
+    }
+
+    .intro p:last-child {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font: 1rem/1.7 Arial, sans-serif;
+    }
+
+    .keyword-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .keyword-box {
+      min-height: 280px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--accent);
+      background: var(--card);
+      box-shadow: 8px 8px 0 rgba(24, 50, 59, 0.08);
+    }
+
+    .number {
+      display: block;
+      margin-bottom: 36px;
+      color: var(--accent);
+      font: 700 0.8rem/1 Arial, sans-serif;
+    }
+
+    .keyword-box h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      line-height: 1.35;
+    }
+
+    .keyword-box p {
+      margin: 0;
+      color: var(--muted);
+      font: 1rem/1.7 Arial, sans-serif;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 48px 0;
+      }
+
+      .keyword-list {
+        grid-template-columns: 1fr;
+      }
+
+      .keyword-box {
+        min-height: auto;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <header>
+    <nav aria-label="주 메뉴">
+      <a href="index.html">프로필</a>
+      <a href="keyword.html" aria-current="page">키워드</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">About Me</p>
+      <h1 id="page-title">나를 설명하는<br>세 가지 키워드</h1>
+      <p>내가 좋아하는 것과 일상에서 중요하게 생각하는 것을 세 문장으로 소개합니다.</p>
+    </section>
+
+    <section class="keyword-list" aria-label="나를 설명하는 세 가지 키워드">
+      <article class="keyword-box">
+        <span class="number">KEYWORD 01</span>
+        <h2>내가 즐겨보는 콘텐츠는?</h2>
+        <p>새로운 지식과 다양한 사람들의 이야기를 만날 수 있는 유튜브 콘텐츠를 즐겨봅니다.</p>
+      </article>
+
+      <article class="keyword-box">
+        <span class="number">KEYWORD 02</span>
+        <h2>나의 취미는?</h2>
+        <p>좋아하는 음악을 듣는 것이 취미입니다.</p>
+      </article>
+
+      <article class="keyword-box">
+        <span class="number">KEYWORD 03</span>
+        <h2>외출할 때 가방에 꼭 챙기는 물품은?</h2>
+        <p>보조배터리입니다.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Hong</p>
+  </footer>
+</body>
+</html>

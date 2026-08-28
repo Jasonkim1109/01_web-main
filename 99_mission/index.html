@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hong - Profile</title>
+  <style>
+    :root {
+      --ink: #18323b;
+      --muted: #60777b;
+      --paper: #f5f1e8;
+      --card: #fffdf8;
+      --accent: #e66d4f;
+      --line: #d9cfc0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 16px;
+      z-index: 1;
+      padding: 8px 12px;
+      color: var(--card);
+      background: var(--ink);
+      font: 700 0.9rem/1 Arial, sans-serif;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(135deg, #f5f1e8 0%, #eef3ef 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    header {
+      border-bottom: 1px solid rgba(217, 207, 192, 0.8);
+      background: rgba(255, 253, 248, 0.72);
+    }
+
+    nav,
+    main,
+    footer {
+      width: min(100% - 32px, 960px);
+      margin: 0 auto;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      padding: 24px 0;
+      font: 700 0.9rem/1 Arial, sans-serif;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    nav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    main {
+      padding: 48px 0 72px;
+    }
+
+    .profile-intro {
+      position: relative;
+      overflow: hidden;
+      padding: 48px;
+      border-left: 6px solid var(--accent);
+      background: var(--card);
+      box-shadow: 12px 12px 0 rgba(24, 50, 59, 0.08);
+    }
+
+    .profile-intro::after {
+      position: absolute;
+      right: -36px;
+      bottom: -58px;
+      width: 160px;
+      height: 160px;
+      border: 18px solid rgba(230, 109, 79, 0.13);
+      border-radius: 50%;
+      content: "";
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 3rem;
+      line-height: 1.1;
+    }
+
+    .profile-intro p {
+      margin: 0;
+      color: var(--muted);
+      font: 1rem/1.7 Arial, sans-serif;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font: 700 0.8rem/1.2 Arial, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.58);
+    }
+
+    .stats img:nth-child(2) {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+
+    .stats img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .skills {
+      margin-top: 56px;
+    }
+
+    .skills > h2 {
+      margin: 0 0 24px;
+      font-size: 2rem;
+    }
+
+    .projects {
+      margin-top: 56px;
+    }
+
+    .projects > h2 {
+      margin: 0 0 24px;
+      font-size: 2rem;
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-top: 4px solid transparent;
+      background: var(--card);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+      border-top-color: var(--accent);
+      box-shadow: 8px 8px 0 rgba(24, 50, 59, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .project-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      font: 1rem/1.6 Arial, sans-serif;
+    }
+
+    .project-card a {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--accent);
+      font: 700 0.9rem/1.4 Arial, sans-serif;
+      text-decoration: none;
+    }
+
+    .project-card a:hover,
+    .project-card a:focus-visible {
+      text-decoration: underline;
+    }
+
+    .skill-group {
+      margin: 0 0 24px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skill-list img {
+      display: block;
+    }
+
+    footer {
+      padding: 0 0 32px;
+      color: var(--muted);
+      font: 0.85rem/1.5 Arial, sans-serif;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      .profile-intro,
+      .skill-group {
+        padding: 20px;
+      }
+
+      .stats {
+        padding: 12px;
+      }
+
+      .project-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+  <header>
+    <nav aria-label="주 메뉴">
+      <a href="index.html" aria-current="page">프로필</a>
+      <a href="keyword.html">키워드</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="profile-intro" aria-labelledby="profile-title">
+      <p class="eyebrow">Portfolio / Hong</p>
+      <h1 id="profile-title">🙇 안녕하세요, 뭐라도 성장하고 싶은 <em>Hong</em>입니다!</h1>
+      <p>배우고 만든 것을 차곡차곡 기록하며 성장하고 있습니다.</p>
+    </section>
+
+    <section class="stats" aria-label="프로필 통계 및 배너">
+      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJasonkim1109&amp;edge_flat=false&amp;title=hits" alt="프로필 조회수">
+      <img src="https://capsule-render.vercel.app/api?type=waving&amp;height=200&amp;text=Good%20Day%20To%20Code!&amp;fontAlign=40&amp;fontAlignY=40&amp;color=gradient" alt="Good Day To Code 배너">
+      <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2FYeonjiKim0316&amp;label=hits&amp;icon=alarm-fill&amp;color=%23198754&amp;message=&amp;style=flat&amp;tz=UTC" alt="GitHub 조회수">
+    </section>
+
+    <section class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">🦾 Skills (하나도 모름)</h2>
+
+      <section class="skill-group" aria-labelledby="language-title">
+        <h3 id="language-title">🧑‍💻 Lang and Frameworks</h3>
+        <ul class="skill-list">
+          <!-- Oracle의 요청으로 Java 로고가 Simple Icons에서 삭제되었기에 대신 OpenJDK의 로고를 사용 -->
+          <li><img src="https://img.shields.io/badge/java-ffffff.svg?&amp;style=for-the-badge&amp;logo=openjdk&amp;logoColor=black" alt="Java"></li>
+          <li><img src="https://img.shields.io/badge/spring-6DB33F.svg?&amp;style=for-the-badge&amp;logo=spring&amp;logoColor=white" alt="Spring"></li>
+          <li><img src="https://img.shields.io/badge/mysql-4479A1.svg?&amp;style=for-the-badge&amp;logo=mysql&amp;logoColor=white" alt="MySQL"></li>
+          <li><img src="https://img.shields.io/badge/html5-E34F26.svg?&amp;style=for-the-badge&amp;logo=html5&amp;logoColor=white" alt="HTML5"></li>
+          <li><img src="https://img.shields.io/badge/css3-1572B6.svg?&amp;style=for-the-badge&amp;logo=css3&amp;logoColor=white" alt="CSS3"></li>
+          <li><img src="https://img.shields.io/badge/javascript-F7DF1E.svg?&amp;style=for-the-badge&amp;logo=javascript&amp;logoColor=white" alt="JavaScript"></li>
+          <li><img src="https://img.shields.io/badge/vue.js-4FC08D.svg?&amp;style=for-the-badge&amp;logo=vuedotjs&amp;logoColor=white" alt="Vue.js"></li>
+          <li><img src="https://img.shields.io/badge/python-3776AB.svg?&amp;style=for-the-badge&amp;logo=python&amp;logoColor=white" alt="Python"></li>
+          <li><img src="https://img.shields.io/badge/django-092E20.svg?&amp;style=for-the-badge&amp;logo=django&amp;logoColor=white" alt="Django"></li>
+        </ul>
+      </section>
+
+      <section class="skill-group" aria-labelledby="tools-title">
+        <h3 id="tools-title">🛠️ Infra and Tools</h3>
+        <ul class="skill-list">
+          <li><img src="https://img.shields.io/badge/linux-FCC624.svg?&amp;style=for-the-badge&amp;logo=linux&amp;logoColor=white" alt="Linux"></li>
+          <li><img src="https://img.shields.io/badge/git-F05032.svg?&amp;style=for-the-badge&amp;logo=git&amp;logoColor=white" alt="Git"></li>
+          <li><img src="https://img.shields.io/badge/github-181717.svg?&amp;style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="GitHub"></li>
+          <li><img src="https://img.shields.io/badge/aws-232F3E.svg?&amp;style=for-the-badge&amp;logo=amazonaws&amp;logoColor=white" alt="AWS"></li>
+          <li><img src="https://img.shields.io/badge/colab-F9AB00.svg?&amp;style=for-the-badge&amp;logo=googlecolab&amp;logoColor=white" alt="Colab"></li>
+          <li><img src="https://img.shields.io/badge/vscode-007ACC.svg?&amp;style=for-the-badge&amp;logo=visualstudiocode&amp;logoColor=white" alt="VS Code"></li>
+          <li><img src="https://img.shields.io/badge/eclipse-2C2255.svg?&amp;style=for-the-badge&amp;logo=eclipseide&amp;logoColor=white" alt="Eclipse"></li>
+          <li><img src="https://img.shields.io/badge/intellij-000000.svg?&amp;style=for-the-badge&amp;logo=intellijidea&amp;logoColor=white" alt="IntelliJ IDEA"></li>
+          <li><img src="https://img.shields.io/badge/pycharm-000000.svg?&amp;style=for-the-badge&amp;logo=pycharm&amp;logoColor=white" alt="PyCharm"></li>
+          <li><img src="https://img.shields.io/badge/slack-4A154B.svg?&amp;style=for-the-badge&amp;logo=slack&amp;logoColor=white" alt="Slack"></li>
+          <li><img src="https://img.shields.io/badge/notion-000000.svg?&amp;style=for-the-badge&amp;logo=notion&amp;logoColor=white" alt="Notion"></li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Selected Work</h2>
+      <section class="project-list" aria-label="작업물 목록">
+        <article class="project-card">
+          <h3>HTML 영역 이해하기</h3>
+          <p>블록 요소와 인라인 요소의 차이를 비교하며 HTML 레이아웃의 기초를 정리한 페이지입니다.</p>
+          <a href="../01_html/05_html_layout.html">프로젝트 보기 <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="project-card">
+          <h3>Flexbox 컬러 보드</h3>
+          <p>Flexbox의 정렬과 배치 속성을 활용해 여러 요소를 한 화면에 구성한 CSS 실습입니다.</p>
+          <a href="../02_css/03_flex.html">프로젝트 보기 <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="project-card">
+          <h3>Fetch API 실험실</h3>
+          <p>JavaScript Fetch API를 사용해 외부 데이터를 요청하고 화면에 출력하는 예제입니다.</p>
+          <a href="../03_js/exam7-fetch.html">프로젝트 보기 <span aria-hidden="true">→</span></a>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Hong</p>
+  </footer>
+</body>
+</html>

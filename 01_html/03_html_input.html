@@ -39,7 +39,26 @@
   <input type="text" id="affiliation" name="affiliation" value="SIAT"><br><br>
   <input type="submit" value="전송"> <!-- value를 지워보고 바꿔보기 -->
   <input type="reset" value="초기화">
+  <!--쿼리스트링: name=Kim&affiliation=SIAT-->
 </form>
-  </form>
+
+ <p id="result"></p>
+
+  <script>
+    const form = document.querySelector('#inputForm');
+    const result = document.querySelector('#result');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const input = form.elements.namedItem('userName');
+      result.textContent = `입력한 이름: ${input.value}`;
+    });
+  </script>
+
+ </form id="inputForm">
+  <label>이름:</label>
+  <input type="text" name="userName">
+  <input type="submit" value="전송">
 </body>
 </html>

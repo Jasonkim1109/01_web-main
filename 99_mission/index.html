@@ -57,18 +57,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       padding: 24px 0;
       font: 700 0.9rem/1 Arial, sans-serif;
     }
 
-    nav::before {
+    .brand {
       color: var(--accent);
-      content: "HONG / PORTFOLIO";
+      text-decoration: none;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    nav a {
-      margin-left: 24px;
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--ink);
+      font: 700 0.8rem/1 Arial, sans-serif;
+      cursor: pointer;
     }
 
     nav a {
@@ -99,7 +118,7 @@
       overflow: hidden;
       padding: 48px;
       border-left: 8px solid var(--accent);
-      background: var(--card);
+      background: linear-gradient(135deg, #ffffff 0%, #edf7f6 100%);
       box-shadow: 12px 12px 0 rgba(15, 118, 110, 0.12);
     }
 
@@ -112,6 +131,26 @@
       border: 18px solid rgba(242, 184, 75, 0.2);
       border-radius: 50%;
       content: "";
+    }
+
+    .hero-actions,
+    .status-pills,
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions {
+      justify-content: flex-start;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .status-pills {
+      justify-content: flex-start;
+      gap: 8px;
+      margin-top: 20px;
     }
 
     h1 {
@@ -138,7 +177,9 @@
     .stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
       margin-top: 24px;
       padding: 18px;
       border: 1px solid var(--line);
@@ -153,6 +194,22 @@
     .stats img {
       max-width: 100%;
       height: auto;
+    }
+
+    .feature-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+
+    .feature-card {
+      flex: 1 1 220px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 10px 18px rgba(16, 42, 67, 0.04);
     }
 
     .skills {
@@ -174,13 +231,15 @@
     }
 
     .project-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      justify-content: space-between;
       gap: 18px;
+      flex-wrap: wrap;
     }
 
     .project-card {
       display: flex;
+      flex: 1 1 260px;
       flex-direction: column;
       min-height: 220px;
       padding: 24px;
@@ -237,6 +296,8 @@
     .skill-list {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
       gap: 8px;
       margin: 0;
       padding: 0;
@@ -253,13 +314,40 @@
       font: 0.85rem/1.5 Arial, sans-serif;
     }
 
+    @media (max-width: 700px) {
+      nav {
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+        padding-top: 10px;
+      }
+
+      .nav-menu.is-open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2.5rem;
       }
 
       .profile-intro,
-      .skill-group {
+      .skill-group,
+      .feature-card {
         padding: 20px;
       }
 
@@ -267,18 +355,19 @@
         padding: 12px;
       }
 
-      .project-list {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        align-items: flex-start;
+      .hero-actions {
         flex-direction: column;
-        gap: 18px;
+        align-items: stretch;
       }
 
-      nav a {
-        margin-left: 0;
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
+      }
+
+      .feature-strip,
+      .project-list {
+        flex-direction: column;
       }
     }
   </style>
@@ -287,8 +376,13 @@
   <a class="skip-link" href="#main-content">본문으로 바로가기</a>
   <header>
     <nav aria-label="주 메뉴">
-      <a href="index.html" aria-current="page">프로필</a>
-      <a href="keyword.html">키워드</a>
+      <a class="brand" href="index.html" aria-current="page">Hong</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menu</button>
+      <div class="nav-menu" id="main-menu">
+        <a href="index.html" aria-current="page">프로필</a>
+        <a href="keyword.html">키워드</a>
+        <a href="#projects-title">작업물</a>
+      </div>
     </nav>
   </header>
 
@@ -297,6 +391,17 @@
       <p class="eyebrow">Portfolio / Hong</p>
       <h1 id="profile-title">🙇 안녕하세요, 뭐라도 성장하고 싶은 <em>Hong</em>입니다!</h1>
       <p>배우고 만든 것을 차곡차곡 기록하며 성장하고 있습니다.</p>
+
+      <div class="hero-actions">
+        <a class="primary-btn" href="#projects-title">프로젝트 보기</a>
+        <a class="secondary-btn" href="keyword.html">키워드 정리</a>
+      </div>
+
+      <div class="status-pills" aria-label="현재 상태">
+        <span>Learning</span>
+        <span>Responsive UI</span>
+        <span>JavaScript</span>
+      </div>
     </section>
 
     <section class="stats" aria-label="프로필 통계 및 배너">
@@ -305,13 +410,27 @@
       <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2FYeonjiKim0316&amp;label=hits&amp;icon=alarm-fill&amp;color=%23198754&amp;message=&amp;style=flat&amp;tz=UTC" alt="GitHub 조회수">
     </section>
 
+    <section class="feature-strip" aria-label="특징 소개">
+      <article class="feature-card">
+        <h3>🌱 성장 중심</h3>
+        <p>기초부터 차근차근 쌓아가며, 매일 배우고 기록하는 습관을 중요하게 생각합니다.</p>
+      </article>
+      <article class="feature-card">
+        <h3>🧩 실습형 학습</h3>
+        <p>이론을 익히기보다 직접 코드를 작성하고 예제를 적용해 이해를 깊게 만들고 있습니다.</p>
+      </article>
+      <article class="feature-card">
+        <h3>📱 반응형 사고</h3>
+        <p>모바일부터 데스크탑까지 자연스럽게 보이는 UI 구조를 고민하는 개발자가 되고 있습니다.</p>
+      </article>
+    </section>
+
     <section class="skills" aria-labelledby="skills-title">
       <h2 id="skills-title">🦾 Skills (하나도 모름)</h2>
 
       <section class="skill-group" aria-labelledby="language-title">
         <h3 id="language-title">🧑‍💻 Lang and Frameworks</h3>
         <ul class="skill-list">
-          <!-- Oracle의 요청으로 Java 로고가 Simple Icons에서 삭제되었기에 대신 OpenJDK의 로고를 사용 -->
           <li><img src="https://img.shields.io/badge/java-ffffff.svg?&amp;style=for-the-badge&amp;logo=openjdk&amp;logoColor=black" alt="Java"></li>
           <li><img src="https://img.shields.io/badge/spring-6DB33F.svg?&amp;style=for-the-badge&amp;logo=spring&amp;logoColor=white" alt="Spring"></li>
           <li><img src="https://img.shields.io/badge/mysql-4479A1.svg?&amp;style=for-the-badge&amp;logo=mysql&amp;logoColor=white" alt="MySQL"></li>
@@ -367,7 +486,24 @@
   </main>
 
   <footer>
-    <p>&copy; Hong</p>
+    <p>&copy; <span id="current-year"></span> Hong</p>
   </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear();
+    }
+  </script>
 </body>
 </html>

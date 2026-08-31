@@ -11,7 +11,7 @@ body {
     border-style: dashed;
 }
 
-/* class */
+/* class */ 여러 위치에 같은 속성 적용하고 싶을때
 .line-need {
     border-color: blue;
     border-style: dashed;

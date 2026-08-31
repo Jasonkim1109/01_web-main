@@ -10,27 +10,44 @@
     2. html 파일 안에 <style> </style> 안에 작성: 현재 페이지에서만 쓰게될 예외 코드들은 앞의 파일 뒤에 link 줍니다.
     3. 특정 태그의 style= 이라는 속성으로 직접 제시: 딱 한번 예외에 작성. 파싱할 때 잘못 파싱되므로 권장되는 방법은 아님
 -->
+    <style>
+     body {
+    margin: 0;
+    border-color: rgb(0, 0, 0);
+    border-style: dashed;
+}
+.line-need {
+    border-color: blue;
+    border-style: dashed;
+}
+/* id */
+#header, #footer {
+    border-color: rgb(255, 77, 0);
+    border-style: dashed;}
+
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         이곳은 맨 위에 늘 떠있는 header입니다.
     </header>
     <content>
         본문입니다.
         <article>
-            <div>DIV1</div>
-            <div>DIV2</div>
-            <div>DIV3</div>
+            <div class="line-need">DIV1</div>
+            <div id="div2" class="line-need">DIV2</div>
+            <div3 class="line-need">DIV3</div3>
         </article>
         <article>
-            <span>SPAN1</span>
-            <span>SPAN2</span>
-            <span>SPAN3</span>
+           
+            <span id="span1" class="line-need">SPAN1</span>
+            <span id="span2" class="line-need">SPAN2</span>
+            <span id="span3" class="line-need">SPAN3</span>
         </article>
     </content>
-    <footer>
+    <footer id="footer">
         맨 마지막에 고정된 footer입니다.
     </footer>
 </body>
 </html>
+

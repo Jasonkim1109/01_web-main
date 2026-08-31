@@ -6,12 +6,13 @@
   <title>Hong - Profile</title>
   <style>
     :root {
-      --ink: #18323b;
-      --muted: #60777b;
-      --paper: #f5f1e8;
-      --card: #fffdf8;
-      --accent: #e66d4f;
-      --line: #d9cfc0;
+      --ink: #102a43;
+      --muted: #526777;
+      --paper: #edf5f5;
+      --card: #ffffff;
+      --accent: #0f766e;
+      --highlight: #f2b84b;
+      --line: #c9dadd;
     }
 
     * {
@@ -36,13 +37,13 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: linear-gradient(135deg, #f5f1e8 0%, #eef3ef 100%);
+      background: radial-gradient(circle at top right, #d9eeee 0, transparent 36%), var(--paper);
       font-family: Georgia, "Times New Roman", serif;
     }
 
     header {
-      border-bottom: 1px solid rgba(217, 207, 192, 0.8);
-      background: rgba(255, 253, 248, 0.72);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
     }
 
     nav,
@@ -54,9 +55,20 @@
 
     nav {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
       padding: 24px 0;
       font: 700 0.9rem/1 Arial, sans-serif;
+    }
+
+    nav::before {
+      color: var(--accent);
+      content: "HONG / PORTFOLIO";
+      letter-spacing: 0.08em;
+    }
+
+    nav a {
+      margin-left: 24px;
     }
 
     nav a {
@@ -86,9 +98,9 @@
       position: relative;
       overflow: hidden;
       padding: 48px;
-      border-left: 6px solid var(--accent);
+      border-left: 8px solid var(--accent);
       background: var(--card);
-      box-shadow: 12px 12px 0 rgba(24, 50, 59, 0.08);
+      box-shadow: 12px 12px 0 rgba(15, 118, 110, 0.12);
     }
 
     .profile-intro::after {
@@ -97,14 +109,15 @@
       bottom: -58px;
       width: 160px;
       height: 160px;
-      border: 18px solid rgba(230, 109, 79, 0.13);
+      border: 18px solid rgba(242, 184, 75, 0.2);
       border-radius: 50%;
       content: "";
     }
 
     h1 {
       margin: 0 0 12px;
-      font-size: 3rem;
+      max-width: 760px;
+      font-size: 3.4rem;
       line-height: 1.1;
     }
 
@@ -129,7 +142,7 @@
       margin-top: 24px;
       padding: 18px;
       border: 1px solid var(--line);
-      background: rgba(255, 253, 248, 0.58);
+      background: rgba(255, 255, 255, 0.68);
     }
 
     .stats img:nth-child(2) {
@@ -172,7 +185,7 @@
       min-height: 220px;
       padding: 24px;
       border: 1px solid var(--line);
-      border-top: 4px solid transparent;
+      border-top: 4px solid var(--highlight);
       background: var(--card);
       transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
     }
@@ -180,7 +193,7 @@
     .project-card:hover,
     .project-card:focus-within {
       border-top-color: var(--accent);
-      box-shadow: 8px 8px 0 rgba(24, 50, 59, 0.08);
+      box-shadow: 8px 8px 0 rgba(15, 118, 110, 0.12);
       transform: translateY(-4px);
     }
 
@@ -213,6 +226,7 @@
       padding: 24px;
       border: 1px solid var(--line);
       background: var(--card);
+      box-shadow: 4px 4px 0 rgba(16, 42, 67, 0.04);
     }
 
     .skill-group h3 {
@@ -241,7 +255,7 @@
 
     @media (max-width: 600px) {
       h1 {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
       }
 
       .profile-intro,
@@ -255,6 +269,16 @@
 
       .project-list {
         grid-template-columns: 1fr;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      nav a {
+        margin-left: 0;
       }
     }
   </style>

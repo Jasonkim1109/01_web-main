@@ -1,0 +1,104 @@
+/*
+  수정 내역:
+  - 계좌 카드를 흰색 배경, 둥근 모서리, 옅은 그림자로 꾸몄습니다.
+  - 은행명은 굵게, 잔액은 크게 표시했습니다.
+  - footer와 버튼에 Flexbox를 사용해 버튼을 카드 하단에 나란히 배치했습니다.
+  - 아래 CSS 속성마다 사용 이유를 한글 주석으로 설명했습니다.
+*/
+
+/* 계좌 카드 전체 영역 */
+body {
+  display: flex; /* 카드를 화면 가운데 배치하기 위해 Flexbox를 사용합니다. */
+  justify-content: center; /* 카드를 가로 방향 가운데에 놓기 위해 사용합니다. */
+  align-items: center; /* 카드를 세로 방향 가운데에 놓기 위해 사용합니다. */
+  min-height: 100vh; /* 화면 높이만큼 영역을 확보해 세로 가운데 정렬이 가능하게 합니다. */
+  margin: 0; /* 브라우저 기본 바깥 여백을 제거해 배치를 정확하게 합니다. */
+  padding: 24px; /* 작은 화면에서 카드가 화면 가장자리에 붙지 않게 합니다. */
+  background-color: #f4f6f8; /* 흰 카드가 잘 보이도록 옅은 배경색을 사용합니다. */
+  font-family: Arial, sans-serif; /* 금융 정보가 명확하게 보이도록 읽기 쉬운 글꼴을 사용합니다. */
+}
+
+/* 계좌 카드 */
+article {
+  display: flex; /* 카드 내부를 세로 방향으로 정렬하기 위해 Flexbox를 사용합니다. */
+  flex-direction: column; /* 은행명, 계좌 정보, 버튼을 위에서 아래로 배치합니다. */
+  width: min(100%, 360px); /* 카드가 너무 넓어지지 않으면서 작은 화면에는 맞게 합니다. */
+  min-height: 240px; /* 버튼을 카드 하단에 안정적으로 배치할 높이를 확보합니다. */
+  padding: 28px; /* 카드 안쪽 콘텐츠와 테두리 사이에 여백을 만듭니다. */
+  border: 1px solid #e5e7eb; /* 카드 경계를 은은하게 구분합니다. */
+  border-radius: 16px; /* 카드 모서리를 부드럽게 둥글립니다. */
+  background-color: #ffffff; /* 카드 배경을 흰색으로 지정합니다. */
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08); /* 카드가 배경에서 살짝 떠 보이도록 옅은 그림자를 줍니다. */
+}
+
+/* 은행명 영역 */
+article header {
+  margin-bottom: 24px; /* 은행명과 계좌 정보 사이에 충분한 간격을 만듭니다. */
+}
+
+article h2 {
+  margin: 0; /* 제목의 기본 여백을 제거해 카드 안 간격을 직접 조절합니다. */
+  color: #172b4d; /* 은행명이 선명하게 보이도록 짙은 색을 사용합니다. */
+  font-size: 1.4rem; /* 은행명을 일반 본문보다 크게 표시합니다. */
+  font-weight: 700; /* 은행명을 굵게 표시해 브랜드 정보를 강조합니다. */
+}
+
+/* 계좌번호와 잔액 영역 */
+article section {
+  flex: 1; /* 남는 공간을 차지해 footer가 카드 하단으로 밀리게 합니다. */
+}
+
+article section p {
+  margin: 0 0 12px; /* 계좌번호와 잔액을 구분하기 위한 아래 여백을 줍니다. */
+  color: #64748b; /* 계좌번호처럼 보조적인 정보는 차분한 색으로 표시합니다. */
+  font-size: 0.95rem; /* 계좌번호를 잔액보다 작게 표시합니다. */
+}
+
+article section p:last-child {
+  margin-bottom: 0; /* 마지막 정보 아래의 불필요한 여백을 제거합니다. */
+}
+
+article data {
+  display: block; /* 잔액을 다음 줄에 배치해 금액을 강조합니다. */
+  margin-top: 8px; /* '잔액:' 라벨과 금액 사이에 간격을 둡니다. */
+  color: #172b4d; /* 금액이 가장 잘 보이도록 짙은 색을 사용합니다. */
+  font-size: 2rem; /* 잔액을 크게 표시해 핵심 정보를 강조합니다. */
+  font-weight: 700; /* 잔액을 굵게 표시해 빠르게 읽히도록 합니다. */
+  letter-spacing: -0.02em; /* 큰 금액의 글자 간격을 살짝 줄여 안정적으로 보이게 합니다. */
+}
+
+/* 카드 하단 버튼 영역 */
+article footer {
+  display: flex; /* 두 버튼을 가로로 배치하기 위해 Flexbox를 사용합니다. */
+  justify-content: space-between; /* 버튼을 양 끝으로 벌려 배치합니다. */
+  gap: 12px; /* 좁은 화면에서도 버튼 사이에 최소 간격을 유지합니다. */
+  margin-top: 28px; /* 계좌 정보와 버튼 사이를 분리합니다. */
+}
+
+article button {
+  flex: 1; /* 두 버튼이 같은 너비를 갖도록 합니다. */
+  min-height: 44px; /* 터치 기기에서도 누르기 쉬운 높이를 확보합니다. */
+  border: 1px solid #cbd5e1; /* 버튼 영역을 명확하게 구분합니다. */
+  border-radius: 8px; /* 카드와 어울리도록 버튼 모서리를 둥글립니다. */
+  background-color: #ffffff; /* 기본 버튼 배경을 흰색으로 지정합니다. */
+  color: #172b4d; /* 버튼 글자를 선명하게 표시합니다. */
+  font-size: 0.95rem; /* 버튼 글자를 읽기 적절한 크기로 설정합니다. */
+  font-weight: 700; /* 버튼의 행동을 명확하게 전달합니다. */
+  cursor: pointer; /* 클릭 가능한 요소임을 알려줍니다. */
+}
+
+article button:first-child {
+  border-color: #1769aa; /* 주요 행동 버튼의 테두리를 강조합니다. */
+  background-color: #1769aa; /* 이체 버튼을 주요 버튼으로 구분합니다. */
+  color: #ffffff; /* 어두운 버튼 위에서 글자가 잘 보이게 합니다. */
+}
+
+article button:hover,
+article button:focus-visible {
+  outline: 3px solid rgba(23, 105, 170, 0.24); /* 마우스와 키보드 사용 시 버튼 위치를 분명히 합니다. */
+  outline-offset: 2px; /* 포커스 테두리와 버튼 사이에 간격을 둡니다. */
+}
+
+article button:hover {
+  filter: brightness(0.95); /* 마우스를 올렸을 때 상호작용 상태를 시각적으로 보여줍니다. */
+}

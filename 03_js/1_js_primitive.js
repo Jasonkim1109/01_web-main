@@ -17,6 +17,7 @@
 - let: 한번 만들면 값을 바꾸는 건 가능하지만, 새로 지우고 만들 수는 없는 방
 - const: 한번 만들면 값을 바꾸는 게 불가능한 방
 */
+console.log("Hello World!"); // 콘솔창에 출력하는 함수
 const a = "apple"; // 세미콜론으로 마침표를 찍는게 원칙
   
  
@@ -72,28 +73,31 @@ const bigNum2 = BigInt("123456789012345678901234567890");
 console.log(typeof bigNum1); // "bigint"
 
 //-3.string - 문자들을 순서대로 늘어놓은 덩어리)
+var str = "안녕하세요";
+console.log(str); // string
 
 // -4. boolean - 소문자로 작성합니다: true / false
 var bool = true;
 bool; true 
- // boolean
-
+console.log(typeof (bool));
+ // boolean. 비어있는 참조형 자료는 true로 반환됩니다.
 
 
 // -5. null: 개발자가 넣은 값 없음
 // 'object'로 자료형이 찍힘. 자바스크립트의 자체 버그. 그러나 그대로 유지되고 있습니다.
 var null1 = null;
 //----
-// 할당
+//선언   할당
 //----
-// 대입
+//       대입
 console.log(typeof (null1)); // object
 // 'object'로 자료형이 찍힘. 자바스크립트의 자체 버그. 그러나 그대로 유지되고 있습니다.
 // js에서 null을 확일할 때는 Boolean으로 형변환을 해서 false 여부로 null 타입을 체크합니다.
 
 // -6. undefined: 인터프리터가 코드를 돌렸는데 줄 게 없음(return 없음)
-var und1;
-console.log(typeof (und1)); // undefined
+var undefined1;
+console.log(typeof (undefined1)); // undefined
+console.log(Boolean(undefined1)); // false
 
 
 /* 실습:
@@ -135,6 +139,10 @@ console.log(!true) // not = 원래 조건의 반대
   //else 절에는 다른 조건을 작성하는 부분이 없습니다. else if로 하나씩 조건 추가
 // }
 //
+if (1==="1"){
+  console.log("참입니다!");
+};
+
 if(true){
   console.log("참입니다!");
 }
@@ -232,8 +240,43 @@ console.log("------------맨 앞의 값만을 가지고 사용한다. ----------
 switch (menu) {
   case ("짜장면" || "짬뽕" || "샐러드"): // 맨 앞의 것만 비교하고 아니면 넘어갑니다.(단락평가)
     console.log(menu + "를 드시는군요 ")   
-    break;   
+    break; //마지막은 생략가능
   default: // 셋 다 참이 아닐 경우 (else)
     console.log("그럼 뭐 드실래요?")
 } 
 // 삼항연산자 - 불표현식 ? 참 : 거짓
+
+console.log("-------------------------------")
+
+var age = "90"
+if (age >= 18) {
+  console.log("성인")  
+}else if (age >= 13) {
+  console.log("미성년자")
+}else if (13>age) {
+  console.log("어린이")
+}
+//1. var age라는 변수에 나이를 입력받고, 나이가 18보다 적으면 미성년자, 18이상이면 성인으로 출력하는 조건문을 작성해보세요.
+// 테스트 케이스 정상       비정상      애매한거
+var age = 13;
+if (age >= 18) {
+  console.log("성인")  
+}else if (0<age <18) {
+  console.log("미성년자")
+}
+
+
+
+//코드를 인터프리터는 왼쪽부터 오른쪽으로 읽는다.
+//  if (0 < age < 18) {
+var age = -5;
+if ((0 < age) && (age < 13)) {
+  console.log("어린이");
+} else if ((18 <= age )) {
+  console.log("성인");
+} else if ((13 <= age) && (age < 18)) {
+  console.log("미성년자");
+} else {
+  console.log("잘못된 나이입니다.");
+}
+

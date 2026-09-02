@@ -205,7 +205,17 @@ while (true) {
 
 
 // arr 와 .length 속성을 이용해서 arr의 모든 원소를 출력하는 while문을 만들어보세요.
-
+/* 초기값;
+while (조건식) { 
+실행문;
+증감식;
+}
+*/
+var i = 0;
+while ( i <arr.length) {
+  i++;
+  console.log(`${arr[i]}야, 안녕!`);
+}
 
 // forEach (인덱스를 경유하지 않고 바로 값만 출력하는 메서드)
 
@@ -230,8 +240,82 @@ while (true) {
 -3. 화살표함수: () => { 동작 }
 */
 
-var arr = ['짱구', '짱아', '훈이']
 
+var arr = ['짱구', '짱아', '훈이']
+arr
+//parameter(매겨변수)로 변수를 전달하는 함수
+function hello(이름) {
+  console.log(`${이름} 님, 안녕하세요. ${나이}살 이시군요.`);
+}
+// js에서의 함수 
+function hello() {
+  console.log('안녕하세요')
+}
+
+hello()
+
+// parameter(매개변수) 로 변수를 전달하는 함수 
+// 매개변수를 몇 개라도 구분해서 넣기 위해 ,로 값을 구분해서 넣습니다.
+function hello1(이름, 나이) {
+  console.log(`${이름} 님, 안녕하세요. ${나이}살 이시군요.`)
+}
+
+hello1() // 이름 자리에 들어와야할 매개변수를 생략했기 때문에 undefined 님, 안녕하세요. 
+hello1('신짱구')
+hello1('신짱아', 5)
+
+function hello2(이름, 나이) {
+  return `${이름} 님, 안녕하세요. ${나이}살 이시군요.`; 
+  // 인터프리터가 함수 동작을 다 마치고 돌아갈 때 달고 돌아간다.
+}
+
+var hello = hello1()
+var hi = hello2()
+
+console.log(hello)
+console.log(hi)
+
+function hello3() {
+  return `hello3가 종료될 때 달고 돌아온 값`
+}
+
+var hi2 = hello3()
+console.log(hi2)
+//1, 3, 5를 출력하는 반복문을 oddnums()를 호출하면 매번 같은 동작이 실행되도록
+
+for (let oddNumber = 1; oddNumber <= 5; oddNumber += 2) {
+  console.log(oddNumber);
+}
+// start 부터 end 까지의 홀수를 출력합니다.
+function oddNums(start, end) {
+  for (let oddNumber = 1; oddNumber <= 5; oddNumber += 2) {
+    console.log(oddNumber); // 보여주고 끝나는 함수
+  }
+}
+
+oddNums()
+
+// start 부터 end 까지의 홀수를 출력합니다.
+// 아무것도 start나 end에 넣지 않으면 1, 10이 들어가도록 기본값(default parameter)을 주고 싶어요.
+// 함수의 입력값으로 파라미터=기본값, 파라미터=기본값 
+function getOddNums(start=1, end=10) {
+  for (let oddNumber = start; oddNumber <= end; oddNumber++) {
+    if (oddNumber % 2 === 1) {
+      console.log(oddNumber); 
+    }
+  }
+}
+
+console.log("------ getOddNums() ----------")
+getOddNums(2,16)
+
+//화살표 함수 ( a ) -> { a + 실행문 }
+var test = (a) => {
+  console.log(a+'테스트')
+}
+//익명함수에 이름을 ordered라고 함.
+
+//start, end까지 반복하면서 홀수만 가져와서 return하는 setoddnumsfinal(start.end)
 // -4. 함수의 스코프
 //     1. 스코프 : 변수나 함수가 어디까지 접근해서 사용할 수 있는지. 
 //     2. 호이스팅(Hoisting): 변수나 함수의 선언이 스코프의 최상단에서 먼저 읽은 것처럼 동작하는 것. 

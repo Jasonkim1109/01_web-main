@@ -47,6 +47,23 @@ console.log(set1);
 //   - value는 모든 자료형이 가능합니다. (기본자료형, 참조자료형 모두 가능)
 var dict1 = {"name": "김연지", "age" : 20, "hobby" : ["자전거 타기", "책읽기"]};
 console.log(dict1.name); // 김연지
+//dic2를 만들고 가: 가위, 나: 나비, 다 : 다람쥐, 라: 라디오
+var dict2 = {"가": "가위", "나": "나비", "다": "다람쥐", "라": "라디오", 1: 1010};
+dict2
+//특정값을 꺼내고 싶을 때는 key를 이용해서 꺼낼 수 있습니다.
+dict2['가']='가랑이';//키가 이미 있으면 값이 변경됨
+dict2['마']='마술사';//키가 없으면 추가됨
+dict2
+delete dict2['가'];//키가 있으면 삭제됨
+dict2
+console.log(dict2['나']);
+console.log(delete dict2['가']);
+console.log('가랑이' in dict2);
+console.log(Object.keys(dict2));
+console.log(Object.values(dict2));
+console.log(Object.entries(dict2));//key value 쌍으로 배열로 묶어서 반환
+//자체적으로 모두 문자열로 바꿔서 나타냄. // ['나', '다', '라', '1', '마']
+// undefined
 
 /* -4. Map: dictionary와 마찬가지로 키-값으로 쌍을 저장합니다. 키로 값을 꺼내 씁니다.
     - 키로 모든 데이터 타입을 받아줍니다. 
@@ -54,26 +71,137 @@ console.log(dict1.name); // 김연지
     - size 속성을 사용해서 요소의 개수를 확인할 수 있습니다.
     - set() get()으로 삽입, 조회를 할 수 있습니다.
     - 뎁스가 복잡하거나, 데이터의 입력 순서, 양이 많을 때 
+    
 */
-
+var map1 = new Map();
+map1.set('가', '가위');//set없이 넣으면 순서가 보장되지 않음. 메서드 무조건 사용하는거 추천.
+map1.set('나', '나비');
+map1.set('다', '다람쥐');
+map1.set(1, 1010);
+console.log(map1.get('가'));
+map1.delete('나');
+console.log(map1);
+console.log(Array.from(map1.values()));
+console.log(map1.get('다'));
+//함수: 코드의 순서를 정해서 한번에 부를 수 있도록 만들어 놓은 덩어리
+//입력에 대해 일관된 출력을 보장하는 코드 덩어리
+//프로그래밍에서의 함수는 크게 2가지. getter: 만든걸 보여주는 함수, setter: 만든걸 바꾸는 함수
 
 /*
-9. 반복문: for/while
+9. 반복문: for-반복의 횟수가 정해져 있을 때/while-반복의 횟수가 정해져 있지 않을 때
 -1. for (초기값; 조건; 증감식) {
   반복되어야 할 실행문
 }
 */
+// 반복되는 숫자를  의미하는 변수를 i, iter, count 등의 변수명을 사용합니다.
+for (var a=0; a<3; a++){
+  console.log(a);
 
+}
+// 1~5까지 출력되도록
+//5~1까지 출력되도록
 // 실습: 5, 3, 1이 출력되도록 변경
+for (var i=1; i<6; i++){
+console.log(i);
+}
+
+for (var i=5; i>0; i--){
+  if(i%2==0){
+   } else {
+    console.log(i);
+  }
+}
+
+for (var i=5; i>0; i-=2){
+  console.log(i);
+}
+//좋은 코드
+//1. 짧은 코드 (수정할 때도 코드 10줄에 에러가 1번씩 난다)
+//2. 반복되는 코드가 없도록
+//3. 변수명 함수명 등이 직관적이어서 이해하기 쉬운 코드
+//4. 주석이 잘 달려있어서 이해할 수 있는 코드
 
 // 배열의 길이는 .length 라는 속성으로 확인
+var arr = ['짱구', '짱아', '훈이'];
+for (var i=0; i<arr.length; i++){
+  console.log(arr[i]+"야 안녕!");
+}
+console.log(arr.length); 
 
+const names = ['짱구', '짱아', '훈이'];
+names.forEach(name => {
+  console.log(`${name}야 안녕!`);
+});
+dict2
+for (var key in dict2) {
+  console.log(key)
+  console.log(dict2[key])
+}
+
+console.log([...map1.entries()])
+for(var [key, value] of map1) { 
+  console.log(key)
+  console.log(`key: ${key} - value: ${value}`)
+}
+//배열의 방의 개수를 조건식으로 사용
+for (var value in arr) {
+  console.log(`${value}야 안녕!~`)
+}
+//방번호를 경유하지 않고 직접 값을 끄집어내는 방문: for in: True/False로 더 이상 끄집어낼 게 없음
+//for of 직접 방에 접근해서
+//for (하나씩 끄집어 낼 데이터를 부르는 공갈문자 in 집합자료명)
 
 
 // -2. while문 - 반복할 횟수가 정해지지 않았을 때
 // 1. while문 바깥에 조건을 끝낼 실마리를 만들어주기
-// 2. 무한반복으로 작성하고 break, continue로 강제로 흐름을 제어
+var i = 1;
+//if switch for while 같은 코드블럭들이 안으로 들어가는 동작의 앞뒤에는
+//엔터를 쳐서 다른 실행문들과 구분해서 보기 좋게 작성합니다.
+while (i < 6) {//조건식
+  console.log(i);//실행문
+  i++;//증감식
+}
+//5~1까지 츨력
+var i = 5;
 
+while (i >= 1) {
+  console.log(i);
+  i--;
+}
+//1, 3, 5
+var i = 1;
+
+while (i < 6) {
+  console.log(i);
+  i+=2;
+}
+
+// 2. 무한반복으로 작성하고 break, continue로 강제로 흐름을 제어
+var i = 1;
+while (true) {
+  console.log(i)
+  i++;
+  if (i > 5) {
+    break; //
+  }
+}
+var i = 5;
+while (true) {
+  console.log(i)
+  i--;
+  if (i < 1) {
+    break; //
+  }
+}
+
+var i = 1;
+while (true) {
+  console.log(i)
+  i+=2;
+  if (i > 5) {
+    break; //
+  }
+}
 
 
 // arr 와 .length 속성을 이용해서 arr의 모든 원소를 출력하는 while문을 만들어보세요.

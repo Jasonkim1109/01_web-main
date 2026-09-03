@@ -262,7 +262,7 @@ function hello1(이름, 나이) {
 
 hello1() // 이름 자리에 들어와야할 매개변수를 생략했기 때문에 undefined 님, 안녕하세요. 
 hello1('신짱구')
-hello1('신짱아', 5)
+hello1('신짱아', 5, 250)
 
 function hello2(이름, 나이) {
   return `${이름} 님, 안녕하세요. ${나이}살 이시군요.`; 
@@ -337,43 +337,167 @@ var test = (a) => {
 
 
 // scope : 변수에 접근할 수 있는 위치를 제어 
-// var x = '가'; // 함수 범위
-// let y = '나'; // 블록 범위
-// const z = '다'; // 블록 범위, 상수 (값 변경 불가)
+ var x = '가'; // 함수 범위
+ let y = '나'; // 블록 범위
+const z = '다'; // 블록 범위, 상수 (값 변경 불가)
 
-// function variableExample() {
-//     var x = 10; // 함수 범위
-//     let y = 20; // 블록 범위
-//     const z = 30; // 블록 범위, 상수 (값 변경 불가)
+ /*function variableExample() {
+     var x = 10; // 함수 범위
+    let y = 20; // 블록 범위
+    const z = 30; // 블록 범위, 상수 (값 변경 불가)
 
-//     if (true) {
-//         var x = 40; // 같은 함수 내에서 var 변수는 덮어씌워짐
-//         let y = 50; // 블록 내에서만 유효
-//         const z = 60; // 블록 내에서만 유효
+     /*if (true) {
+        var x = 40; // 같은 함수 내에서 var 변수는 덮어씌워짐
+       let y = 50; // 블록 내에서만 유효
+        const z = 60; // 블록 내에서만 유효
 
-//         console.log('if문 내부:', x, y, z); // 40, 50, 60
-//     }
+         console.log('if문 내부:', x, y, z); // 40, 50, 60     }
 
-//     console.log('if문 외부:', x, y, z); // 40, 20, 30 (var는 재할당되었지만, let과 const는 블록 범위를 가짐)
-// }
+        console.log('if문 외부:', x, y, z); // 40, 20, 30 (var는 재할당되었지만, let과 const는 블록 범위를 가짐)
+      }
 
 
 /* 11.  클래스: 같은 형식으로 사용하기 위한 자료형을 미리 만들어놓고 계속 객체를 찍어서 재사용 
  - 실제로는 function 으로 만들어집니다.
  - sugar coated 문법: 다른 언어와 호환되다 보니까 class 클래스명으로 만들면 내부적으로 코드를 변환해서 동작시켜줍니다. 
 */
-
+//클래스는 변수들을 찍어내는 규격이기 때문에 더 큰 개념이라는 의미로 대문자로 시작, 띄어쓰기 대신 PascalCase로 작성
 function Person(name, age) {
   this.name = name;
   this.age = age;
 }
-
+// 동작을 미리 만들어서 Person에게 넘겼습니다.
 Person.prototype.greet = function () {
     console.log('안녕하세요!' + this.name)
   }
+var 김재홍 = new Person('김재홍', 28); // new : 새로 방을 파 
+var 신짱구 = new Person('신짱구', 5); 
+console.log(김재홍.age);
+김재홍.greet();
+console.log(신짱구.name);
+신짱구.greet();
+
+  //자주 쓰는 값(data, 변수)등과 동작들(function, 험수)을 미리 마들어 놓고, 필요한 상황에 그때 그때 조합해서 사용하는 프로그래밍 방법
+ 
+//장점: 동작을 만들어 놓으면 재사용이 가능하다.
+//단점: 안쓰는거 메모리 낭비
 
 // static: 클래스를 통해 접근하는 클래스 변수, 클래스 메서드
 // 인스턴스를 통해 접근하는 인스턴스 변수(this로 전달), 인스턴스 메서드
 // 은닉성 구현: #을 붙인 private 변수를 사용하여 외부에서 접근하지 못하도록 숨길 수 있습니다.
+class person2 {
+
+  //생성자(객체가 처음 만들어질 때 1번 자동으로 실행되는)함수
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  } //person2에만 동작하는 메서드
+  greet() {
+    console.log('안녕하세요!' + this.name)
+  }
+}
+
+// 고죠사토루 
+class Fighter extends person2 {
+  fighting() {
+    console.log(`${this.name}이 싸웁니다.`)
+  }
+}
+
+var 고죠사토루 = new Fighter('고죠사토루', 80);
+console.log(고죠사토루.name);
+고죠사토루.greet();
+고죠사토루.fighting();
+
+class runner extends person2 {
+  running() {
+    console.log(`${this.name}는 도망갑니다.`)
+  }
+}
+var 김홍재 = new runner('김홍재', 28);
+console.log(김홍재.name);
+김홍재.greet();
+김홍재.running();
+
+// Student 클래스를 하나 만들어서 greet() , study(과목명) 만 쓸 수 있습니다.
+class Student extends person2 {
+  // 어느 학교인지도 같이 받고 싶어요.
+
+   study(과목명='무언가') {
+    // this 로 해당 인스턴스의 메모리 주소를 전달 
+    console.log(`${this.name}가 ${과목명}을 공부 중입니다.`)
+   }
+}
+
+var 신짱구 = new Student('신짱구', 5);
+신짱구.study('수학'); // 자식클래스에 새로 추가한 인스턴스 메서드
+신짱구.greet(); // 부모클래스에 있는 인스턴스 메서드를 재사용
 
 
+// OnlineFighter 클래스를 하나 Fighter를 상속받아서 keyboardFighting() {'숨어서 싸웁니다'}
+class OnlineFighter extends Fighter {
+
+  fighting() { // 부모클래스에 원래 있는 메서드를 재정의(덮어쓰기)
+    console.log('숨어서 싸웁니다')
+  }
+
+    keyboardFighting() { // 부모클래스에 원래 있는 메서드를 재정의(덮어쓰기)
+    console.log('숨어서 싸웁니다')
+  }
+}
+
+키보드워리어 = new OnlineFighter('김연지', 11)
+키보드워리어.greet(); // 할아버지클래스(Person2)의 기능
+키보드워리어.fighting(); // 부모클래스(Fighter)의 기능을 재정의(Override)
+// 키보드워리어.keyboardFighting(); // 자기자신(OnlineFighter)의 기능
+
+
+// BankAccount 라는 은행 계좌를 관리하기 위한 class를 만들어보겠습니다.
+// bankName, name, accountNumber, balance 
+// #을 붙여서 변수에 접근하지 못하게 관리 가능
+
+
+// BankAccount 라는 은행 계좌를 관리하기 위한 class를 만들어보겠습니다.
+// bankName, name, accountNumber, balance 
+class BankAccount {
+
+  // 클래스 변수: static 이라는 키워드를 앞에 적어둔 클래스 변수로 클래스에서 관리하기 위한 속성을 저장합니다. 
+  static bankName = '우리';
+
+  // 클래스 메서드: static 이라는 키워드를 앞에 적어서 클래스에서 필요한 동작을 만듭니다.
+  static hello() {
+    console.log(`어서오세요. 우리은행입니다~`)
+  }
+
+  // 인스턴스 변수: this 라는 키워드로 각 새로 만들어진 고객 인스턴스만의 고유한 값들을 전달  
+  constructor(name, accountNumber, balance) {
+    this.#name = name;
+    this.#accountNumber = accountNumber;
+    this.#balance = balance;
+  }
+
+  // 인스턴스 메서드: deposit: 입금  - 기존 balance에 새로 들어온 금액을 추가
+  deposit(amount=0) { //setter: 값을 변경만 함
+    this.balance += amount;
+  } 
+
+  // 인스턴스 메서드: withdraw: 출금 - 기존 balace에 새로 빠져나간 금액을 제외 
+  withdraw(amount=0) { //setter: 값을 변경만 함
+    this.balance -= amount;
+  } 
+  checkAmount() {
+    return this.#balance;
+  }
+}
+var 김재홍 = new BankAccount('hong', '123-45', 50000);
+김재홍
+김재홍.deposit(40000);
+김재홍
+
+//클래스 변수와 클래스 메서는 클래스를 통해 접근
+BankAccount.hello();
+
+//객체지향프로그래밍의 결과를 최대한 살려보기
+//변수에 직접 접근 가능은 조작 가능
+//변수를 확인하거나 조정할때는 메서드 경유 권장
+console.log(김재홍.balance);

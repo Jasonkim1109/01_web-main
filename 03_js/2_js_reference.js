@@ -464,6 +464,10 @@ class BankAccount {
   // 클래스 변수: static 이라는 키워드를 앞에 적어둔 클래스 변수로 클래스에서 관리하기 위한 속성을 저장합니다. 
   static bankName = '우리';
 
+  #name;
+  #accountNumber;
+  #balance;
+
   // 클래스 메서드: static 이라는 키워드를 앞에 적어서 클래스에서 필요한 동작을 만듭니다.
   static hello() {
     console.log(`어서오세요. 우리은행입니다~`)
@@ -478,12 +482,12 @@ class BankAccount {
 
   // 인스턴스 메서드: deposit: 입금  - 기존 balance에 새로 들어온 금액을 추가
   deposit(amount=0) { //setter: 값을 변경만 함
-    this.balance += amount;
+    this.#balance += amount;
   } 
 
   // 인스턴스 메서드: withdraw: 출금 - 기존 balace에 새로 빠져나간 금액을 제외 
   withdraw(amount=0) { //setter: 값을 변경만 함
-    this.balance -= amount;
+    this.#balance -= amount;
   } 
   checkAmount() {
     return this.#balance;
@@ -501,3 +505,34 @@ BankAccount.hello();
 //변수에 직접 접근 가능은 조작 가능
 //변수를 확인하거나 조정할때는 메서드 경유 권장
 console.log(김재홍.balance);
+console.log(김재홍.checkAmount()); // private 필드는 메서드를 통해 확인합니다.
+//BankAccount를 상속받은 InsAccount를 만들어주세요.
+//클래사 변수를 bankName "동양"으로 바꿔서 재정의(override)
+//생성자에 kind라는 인스턴스 변수를 추가해서 default값은 변액 등 보험의 종류를 넣을 수 있도록 추가해보세요.
+class InsAccount extends BankAccount {
+  static bankName = '동양';
+
+  constructor(name, accountNumber, balance, kind = '변액') {
+    super(name, accountNumber, balance);
+    this.kind = kind;
+  }
+}
+var 보험 = new InsAccount('hong', '987-65', 100000, '보험');
+console.log(InsAccount.bankName);
+console.log(보험.kind);
+console.log(보험.checkAmount());
+
+// 변수명은 count
+let count = 0;
+
+// add() 누를 때마다 count가 1씩 추가
+function add() {
+  count++;
+  return count;
+}
+// minus()를 누를 때마다 count가 1씩 감소
+function minus() {
+  count--;
+  return count;
+}
+//중복되는 위치를 count라는 변수에 담습니다.
